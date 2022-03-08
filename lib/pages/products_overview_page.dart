@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/components/badge.dart';
 import 'package:shop/components/product_grid.dart';
+import 'package:shop/models/cart.dart';
 import 'package:shop/models/product_list.dart';
 
-enum FilterOptions {
-  Favorite,
-  All
-}
+enum FilterOptions { Favorite, All }
 
 class ProductOverviewPage extends StatefulWidget {
   ProductOverviewPage({Key? key}) : super(key: key);
@@ -45,6 +44,16 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
                 value: FilterOptions.All,
               ),
             ],
+          ),
+          Consumer<Cart>(
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.shopping_cart),
+            ),
+            builder: (ctx, cart, child) => Badge(
+              value: cart.itemsCount.toString(),
+              child: child!,
+            ),
           )
         ],
       ),
